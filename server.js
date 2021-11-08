@@ -31,7 +31,7 @@ app.get('/:room', (req, res) => {
   res.render('room', { roomName: req.params.room })
 })
 
-server.listen(3000)
+server.listen(3003)
 
 io.on('connection', socket => {
   socket.on('new-user', (room, name) => {
@@ -51,6 +51,7 @@ io.on('connection', socket => {
 })
 
 function getUserRooms(socket) {
+
   return Object.entries(rooms).reduce((names, [name, room]) => {
     if (room.users[socket.id] != null) names.push(name)
     return names
